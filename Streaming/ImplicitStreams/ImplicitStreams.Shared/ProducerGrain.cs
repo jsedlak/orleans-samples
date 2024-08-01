@@ -18,22 +18,22 @@ public sealed class ProducerGrain : Grain, IProducerGrain
         _logger = logger;
     }
     
-public Task StartProducing()
-{
-    // Get the stream
-    var streamId = StreamId.Create(Constants.StreamNamespace, this.GetGrainId().GetGuidKey());
-    _stream = this
-        .GetStreamProvider(Constants.StreamProvider)
-        .GetStream<int>(streamId);
+    public Task StartProducing()
+    {
+        // Get the stream
+        var streamId = StreamId.Create(Constants.StreamNamespace, this.GetGrainId().GetGuidKey());
+        _stream = this
+            .GetStreamProvider(Constants.StreamProvider)
+            .GetStream<int>(streamId);
 
-    // Register a timer that produce an event every second
-    var period = TimeSpan.FromSeconds(1);
-    _timer = this.RegisterGrainTimer<object>(TimerTick, new { }, period, period);
+        // Register a timer that produce an event every second
+        var period = TimeSpan.FromSeconds(1);
+        _timer = this.RegisterGrainTimer<object>(TimerTick, new { }, period, period);
 
-    _logger.LogInformation("I will produce a new event every {Period}", period);
+        _logger.LogInformation("I will produce a new event every {Period}", period);
 
-    return Task.CompletedTask;
-}
+        return Task.CompletedTask;
+    }
 
     public override Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)
     {
@@ -54,7 +54,9 @@ public Task StartProducing()
     private async Task TimerTick(object _)
     {
         var value = _counter++;
+        
         _logger.LogInformation("Sending event {EventNumber}", value);
+        
         if (_stream is not null)
         {
             await _stream.OnNextAsync(value);
