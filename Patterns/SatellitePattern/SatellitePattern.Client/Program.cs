@@ -27,7 +27,13 @@ var client = host.Services.GetRequiredService<IClusterClient>();
 var eventDrivenAccount = client.GetGrain<IEventDrivenAccountActor>(accountId);
 await eventDrivenAccount.SignIn("Playing Solitaire");
 
-Console.WriteLine("Pretending to read from the database (our satellite)...");
+Console.WriteLine("Waiting 1s for the event to be processed...");
+await Task.Delay(1000);
+
+Console.WriteLine("Querying for online count...");
+var reporter = client.GetGrain<IAccountStatusReporter>(0);
+var onlineCount = await reporter.GetOnlineCount();
+Console.WriteLine($"Online Count: {onlineCount}");
 
 /*
  * The "Standard" Satellite Grain method uses a direct reference to the Satellite Grain
