@@ -1,7 +1,7 @@
 ﻿using Orleans.Streams;
 using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.EventDriven;
 
 public sealed class EventDrivenAccountActor : Grain<AccountState>, IEventDrivenAccountActor
 {

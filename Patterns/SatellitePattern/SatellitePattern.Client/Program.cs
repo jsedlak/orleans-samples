@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SatellitePattern.Shared.Actors;
+using SatellitePattern.Shared.Actors.BasicSatelliteGrain;
+using SatellitePattern.Shared.Actors.EventDriven;
+using SatellitePattern.Shared.Actors.SecureSatelliteGrain;
 
 var host = Host.CreateDefaultBuilder()
     .UseOrleansClient((context, client) => { client.UseLocalhostClustering(); })

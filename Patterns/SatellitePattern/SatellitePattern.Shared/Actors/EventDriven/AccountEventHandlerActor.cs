@@ -3,7 +3,7 @@ using Orleans.Streams;
 using Orleans.Streams.Core;
 using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.EventDriven;
 
 [ImplicitStreamSubscription(Constants.StreamNamespace)]
 public sealed class AccountEventHandlerActor : Grain<OnlineStatus>, IAccountEventHandlerActor, IAsyncObserver<OnlineStatusSetEvent>, IStreamSubscriptionObserver

@@ -1,6 +1,6 @@
 ﻿using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.BasicSatelliteGrain;
 
 /// <summary>
 /// Represents a standard approach to the satellite pattern using a grain

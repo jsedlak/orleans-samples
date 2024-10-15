@@ -1,6 +1,6 @@
 ﻿using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.BasicSatelliteGrain;
 
 public sealed class AccountActor : Grain<AccountState>, IAccountActor
 {

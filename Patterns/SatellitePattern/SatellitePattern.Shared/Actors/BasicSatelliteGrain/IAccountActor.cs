@@ -1,6 +1,6 @@
 ﻿using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.BasicSatelliteGrain;
 
 /// <summary>
 /// Represents a user's account in the online system
@@ -23,7 +23,7 @@ public interface IAccountActor : IGrainWithGuidKey
     /// <summary>
     /// Sends a Message to the user
     /// </summary>
-    /// <param name="senderAccountId">The sender's account identifier</param>
+    /// <param name="senderAccountId">The targets's account identifier</param>
     /// <param name="message">The message being submitted</param>
     Task SendMessage(Guid senderAccountId, string message);
 

@@ -1,6 +1,6 @@
 ﻿using SatellitePattern.Shared.Domain;
 
-namespace SatellitePattern.Shared.Actors;
+namespace SatellitePattern.Shared.Actors.SecureSatelliteGrain;
 
 public sealed class AccountSecureSatteliteActor : Grain<OnlineStatus>, IAccountSecureSatelliteActor
 {

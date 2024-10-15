@@ -1,4 +1,4 @@
-﻿namespace SatellitePattern.Shared.Actors;
+﻿namespace SatellitePattern.Shared.Actors.SecureSatelliteGrain;
 
 public interface IAccountSecureSatelliteActorExtension : IGrainExtension
 {
