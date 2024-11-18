@@ -5,12 +5,12 @@ using Orleans.Streams.Core;
 namespace ImplicitStreams.Shared;
 
 [ImplicitStreamSubscription(Constants.StreamNamespace)]
-public sealed class ConsumerGrain : Grain, IConsumerGrain, IAsyncObserver<int>, IStreamSubscriptionObserver
+public sealed class SecondConsumerGrain : Grain, IConsumerGrain, IAsyncObserver<int>, IStreamSubscriptionObserver
 {
     private readonly ILogger<IConsumerGrain> _logger;
     private int _readCount = 0;
 
-    public ConsumerGrain(ILogger<IConsumerGrain> logger)
+    public SecondConsumerGrain(ILogger<IConsumerGrain> logger)
     {
         _logger = logger;
     }
@@ -22,20 +22,20 @@ public sealed class ConsumerGrain : Grain, IConsumerGrain, IAsyncObserver<int>, 
 
     public Task OnNextAsync(int item, StreamSequenceToken? token = null)
     {
-        _logger.LogInformation($"[{nameof(ConsumerGrain)}] OnNextAsync: item: {item}, token = {token}");
+        _logger.LogInformation($"[{nameof(SecondConsumerGrain)}] OnNextAsync: item: {item}, token = {token}");
         _readCount = item;
         return Task.CompletedTask;
     }
 
     public Task OnCompletedAsync()
     {
-        _logger.LogInformation($"[{nameof(ConsumerGrain)}] OnCompletedAsync");
+        _logger.LogInformation($"[{nameof(SecondConsumerGrain)}] OnCompletedAsync");
         return Task.CompletedTask;
     }
 
     public Task OnErrorAsync(Exception ex)
     {
-        _logger.LogInformation($"[{nameof(ConsumerGrain)}] OnErrorAsync: {{Exception}}", ex);
+        _logger.LogInformation($"[{nameof(SecondConsumerGrain)}] OnErrorAsync: {{Exception}}", ex);
         return Task.CompletedTask;
     }
 

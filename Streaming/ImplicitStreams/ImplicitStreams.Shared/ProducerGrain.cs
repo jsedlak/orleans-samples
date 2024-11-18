@@ -28,6 +28,7 @@ public sealed class ProducerGrain : Grain, IProducerGrain
 
         // Register a timer that produce an event every second
         var period = TimeSpan.FromSeconds(1);
+
         _timer = this.RegisterGrainTimer<object?>(TimerTick, null, period, period);
 
         _logger.LogInformation("I will produce a new event every {Period}", period);
@@ -57,10 +58,10 @@ public sealed class ProducerGrain : Grain, IProducerGrain
         if (!token.IsCancellationRequested)
         {
             var value = _counter++;
-            _logger.LogInformation("Sending event {EventNumber}", value);
 
             if (_stream is not null)
             {
+                _logger.LogInformation("Sending event {EventNumber}", value);
                 await _stream.OnNextAsync(value);
             }
         }
