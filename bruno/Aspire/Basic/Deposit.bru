@@ -1,0 +1,17 @@
+meta {
+  name: Deposit
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://localhost:7017/account/1234/deposit
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "amount": 54321.24
+  }
+}
