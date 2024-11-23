@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Common", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.AspireBasic.AppHost", "OrleansSamples.AspireBasic.AppHost\OrleansSamples.AspireBasic.AppHost.csproj", "{22018D02-0913-47AF-ADA6-DC58904E35C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.AspireBasic.ServiceDefaults", "OrleansSamples.AspireBasic.ServiceDefaults\OrleansSamples.AspireBasic.ServiceDefaults.csproj", "{30AB9091-048F-4696-8A76-A735FB22B6FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.ServiceDefaults", "..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj", "{30AB9091-048F-4696-8A76-A735FB22B6FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.AspireBasic.Silo", "OrleansSamples.AspireBasic.Silo\OrleansSamples.AspireBasic.Silo.csproj", "{26194B8B-B2B3-4244-821B-B371561BFCC6}"
 EndProject

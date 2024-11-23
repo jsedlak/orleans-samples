@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\common\OrleansSamples.Common\OrleansSamples.Common.csproj" />
-    <ProjectReference Include="..\OrleansSamples.AspireBasic.ServiceDefaults\OrleansSamples.AspireBasic.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
