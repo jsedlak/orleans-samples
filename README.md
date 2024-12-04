@@ -4,4 +4,11 @@ In general, each sample focuses in on a particular portion of the framework whil
 
 To maintain a consistent approach and the ability to quickly run any sample, Aspire is used to orchestrate any necessary resource. Where possible, local containers and emulators are used in place of hosted services.
 
-If there is a sample you wish to see, please sound off in the Issues section.
+If there is a sample you wish to see, please sound off in the Discussions section.
+
+# Aspire
+
+* [Basic (Minimal) Aspire](https://github.com/jsedlak/orleans-samples/tree/main/aspire/aspire-basic)
+
+# Patterns
+* [Satellite Pattern](https://github.com/jsedlak/orleans-samples/tree/main/patterns/patterns-satellite)
