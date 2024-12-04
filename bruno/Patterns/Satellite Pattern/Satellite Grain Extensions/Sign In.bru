@@ -1,0 +1,17 @@
+meta {
+  name: Sign In
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:7089/api/satelliteextension/a70075a8-40cc-46ff-a07c-633c46048b52/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "status": "Playing Solitaire"
+  }
+}
