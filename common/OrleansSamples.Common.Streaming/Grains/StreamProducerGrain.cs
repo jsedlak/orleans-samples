@@ -58,15 +58,22 @@ public sealed class StreamProducerGrain : Grain, IStreamProducerGrain
         return base.OnDeactivateAsync(reason, cancellationToken);
     }
     
+<<<<<<< HEAD:common/OrleansSamples.Common.Streaming/Grains/StreamProducerGrain.cs
     private async Task TimerTick(object? _)
+=======
+    private async Task TimerTick(object? state, CancellationToken token)
+>>>>>>> origin/main:Streaming/ImplicitStreams/ImplicitStreams.Shared/ProducerGrain.cs
     {
-        var value = _counter++;
-        
-        _logger.LogInformation("Sending event {EventNumber}", value);
-        
-        if (_stream is not null)
+        // is silo shutting down
+        if (!token.IsCancellationRequested)
         {
-            await _stream.OnNextAsync(value);
+            var value = _counter++;
+
+            if (_stream is not null)
+            {
+                _logger.LogInformation("Sending event {EventNumber}", value);
+                await _stream.OnNextAsync(value);
+            }
         }
     }
 }
