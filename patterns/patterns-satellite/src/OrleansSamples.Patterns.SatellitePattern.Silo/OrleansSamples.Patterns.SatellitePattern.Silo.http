@@ -1,0 +1,6 @@
+@OrleansSamples.Patterns.SatellitePattern.Silo_HostAddress = http://localhost:5071
+
+GET {{OrleansSamples.Patterns.SatellitePattern.Silo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

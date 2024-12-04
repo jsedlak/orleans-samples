@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Patterns.SatellitePattern.Silo", "src\OrleansSamples.Patterns.SatellitePattern.Silo\OrleansSamples.Patterns.SatellitePattern.Silo.csproj", "{A2F38FD9-D30C-5CB6-2519-D275BB862352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.ServiceDefaults", "..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj", "{E4DCBB1C-1291-C61C-BD27-97858000B481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Patterns.SatellitePattern.Core", "src\OrleansSamples.Patterns.SatellitePattern.Core\OrleansSamples.Patterns.SatellitePattern.Core.csproj", "{4CC7792B-8CA6-4383-9C8E-DEE451E69101}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Core", "1. Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. AppHost", "3. AppHost", "{5C09D267-1D30-4F1E-AF7E-979DAB3415D1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{65C35B7A-2184-483E-A2A1-9EAC03288838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Patterns.SatellitePattern.AppHost", "src\OrleansSamples.Patterns.SatellitePattern.AppHost\OrleansSamples.Patterns.SatellitePattern.AppHost.csproj", "{CFEC7ED8-074F-4684-818E-1CC023F446CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2F38FD9-D30C-5CB6-2519-D275BB862352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2F38FD9-D30C-5CB6-2519-D275BB862352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2F38FD9-D30C-5CB6-2519-D275BB862352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2F38FD9-D30C-5CB6-2519-D275BB862352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC7792B-8CA6-4383-9C8E-DEE451E69101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC7792B-8CA6-4383-9C8E-DEE451E69101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC7792B-8CA6-4383-9C8E-DEE451E69101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC7792B-8CA6-4383-9C8E-DEE451E69101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFEC7ED8-074F-4684-818E-1CC023F446CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFEC7ED8-074F-4684-818E-1CC023F446CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFEC7ED8-074F-4684-818E-1CC023F446CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFEC7ED8-074F-4684-818E-1CC023F446CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2F38FD9-D30C-5CB6-2519-D275BB862352} = {65C35B7A-2184-483E-A2A1-9EAC03288838}
+		{E4DCBB1C-1291-C61C-BD27-97858000B481} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4CC7792B-8CA6-4383-9C8E-DEE451E69101} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{CFEC7ED8-074F-4684-818E-1CC023F446CD} = {5C09D267-1D30-4F1E-AF7E-979DAB3415D1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEB4E8C4-B66F-47E6-9310-5B7AA1B20391}
+	EndGlobalSection
+EndGlobal
