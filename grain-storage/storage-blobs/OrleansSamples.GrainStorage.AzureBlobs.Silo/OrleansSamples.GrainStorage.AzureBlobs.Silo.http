@@ -1,0 +1,25 @@
+@Silo_HostAddress = https://localhost:7017
+
+GET {{Silo_HostAddress}}/account/1234
+Accept: application/json
+
+###
+
+POST {{Silo_HostAddress}}/account/1234/deposit
+Accept: application/json
+Content-Type: application/json
+
+{
+  "amount": 54321.24
+}
+
+###
+
+
+POST {{Silo_HostAddress}}/account/1234/withdraw
+Accept: application/json
+Content-Type: application/json
+
+{
+  "amount": 1000.23
+}
