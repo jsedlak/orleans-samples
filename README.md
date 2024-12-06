@@ -10,5 +10,8 @@ If there is a sample you wish to see, please sound off in the Discussions sectio
 
 * [Basic (Minimal) Aspire](https://github.com/jsedlak/orleans-samples/tree/main/aspire/aspire-basic)
 
+# Storage
+* [Azure Storage (Blobs)](https://github.com/jsedlak/orleans-samples/tree/main/grain-storage/storage-blobs)
+
 # Patterns
 * [Satellite Pattern](https://github.com/jsedlak/orleans-samples/tree/main/patterns/patterns-satellite)
