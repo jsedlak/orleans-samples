@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Azure.Data.Tables" Version="9.0.0" />
+		<PackageReference Include="Azure.Data.Tables" Version="12.10.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Server" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\common\OrleansSamples.Common\OrleansSamples.Common.csproj" />
+		<ProjectReference Include="..\..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj" />
+	</ItemGroup>
+
+</Project>
