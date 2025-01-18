@@ -8,6 +8,7 @@
 
 ## Sample Guidelines
 
+- All samples should use Aspire to coordinate resources
 - Samples are generally designed to focus on one topic at a time. Do your best to leave out options, infrastructure or patterns that are not required to effectively demonstrate the topic.
 - Samples should use the Common projects (Common, ServiceDefaults, Streaming, et al) where possible to ensure a level of commonality
 - Samples should not use external resources wherever necessary. Prefer using local emulators or containers to replace cloud hosted resources.
