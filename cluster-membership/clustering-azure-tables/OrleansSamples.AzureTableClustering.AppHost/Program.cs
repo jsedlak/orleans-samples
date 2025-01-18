@@ -6,18 +6,14 @@ var storage = builder.AddAzureStorage("storage")
 var clusteringTable = storage.AddTables("clustering");
 
 var orleans = builder
-    .AddOrleans("aspire-api-orleans")
+    .AddOrleans("orleans")
     .WithClustering(clusteringTable)
     .WithMemoryGrainStorage("Default");
 
-var silo = builder.AddProject<Projects.OrleansSamples_AspireApiClient_Silo>("silo")
+builder.AddProject<Projects.OrleansSamples_AzureTableClustering_Silo>("silo")
     .WithReference(orleans)
+    .WithReplicas(3)
     .WithReference(clusteringTable)
     .WaitFor(clusteringTable);
-
-builder.AddProject<Projects.OrleansSamples_AspireApiClient_Api>("api")
-    .WithReference(orleans.AsClient())
-    .WithReference(clusteringTable)
-    .WaitFor(silo);
 
 builder.Build().Run();

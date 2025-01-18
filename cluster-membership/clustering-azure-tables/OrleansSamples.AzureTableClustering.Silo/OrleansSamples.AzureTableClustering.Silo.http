@@ -1,0 +1,6 @@
+@OrleansSamples.AzureTableClustering.Silo_HostAddress = http://localhost:5208
+
+GET {{OrleansSamples.AzureTableClustering.Silo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

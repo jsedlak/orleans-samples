@@ -4,7 +4,8 @@
 2. Fork the project and create a branch with your sample name
 3. Create the sample solution
 4. Write a `README.md` in the sample directory explaining the sample as well as how to use it
-5. Push your branch and create a PR back into `main`
+5. Add any HTTP calls to the bruno project stored in `/bruno`
+6. Push your branch and create a PR back into `main`
 
 ## Sample Guidelines
 
