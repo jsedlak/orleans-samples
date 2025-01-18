@@ -9,18 +9,18 @@ The included Bruno and HTTP files allow users to reach these endpoints to ensure
 ## Retrieving Account Balance
 
 ```
-@OrleansSamples.AspireBasic.Silo_HostAddress = https://localhost:7017
+@API_HostAddress = https://localhost:7012
 
-GET {{OrleansSamples.AspireBasic.Silo_HostAddress}}/account/1234
+GET {{API_HostAddress}}/account/1234
 Accept: application/json
 ```
 
 ## Depositing Money
 
 ```
-@OrleansSamples.AspireBasic.Silo_HostAddress = https://localhost:7017
+@API_HostAddress = https://localhost:7012
 
-POST {{OrleansSamples.AspireBasic.Silo_HostAddress}}/account/1234/deposit
+POST {{API_HostAddress}}/account/1234/deposit
 Accept: application/json
 Content-Type: application/json
 
@@ -32,9 +32,9 @@ Content-Type: application/json
 ## Withdrawing Money
 
 ```
-@OrleansSamples.AspireBasic.Silo_HostAddress = https://localhost:7017
+@API_HostAddress = https://localhost:7012
 
-POST {{OrleansSamples.AspireBasic.Silo_HostAddress}}/account/1234/withdraw
+POST {{API_HostAddress}}/account/1234/withdraw
 Accept: application/json
 Content-Type: application/json
 
