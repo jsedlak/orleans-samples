@@ -1,8 +1,8 @@
-# Aspire With Client API
+# Azure Tables Clustering
 
-The Aspire With Client API sample demonstrates running Orleans in Aspire with a separate API project connecting to the cluster via Aspire's service discovery.
+This sample demonstrates clustering via Azure Tables, provided as a Azurite docker container and connection string passed via Aspire.
 
-In this sample, the Web API exposes API endpoints for interacting with the `IAccountGrain` implementation. Internally it communicates with the cluster over TCP.
+In this sample, the silo exposes API endpoints for interacting with the `IAccountGrain` implementation.
 
 The included Bruno and HTTP files allow users to reach these endpoints to ensure the cluster is working appropriately.
 
