@@ -1,0 +1,6 @@
+@OrleansSamples.RedisStorage.Silo_HostAddress = http://localhost:5007
+
+GET {{OrleansSamples.RedisStorage.Silo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
