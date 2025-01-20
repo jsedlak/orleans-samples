@@ -17,7 +17,7 @@ internal sealed class PostgresClusteringProviderBuilder : IProviderBuilder<ISilo
         builder.UseAdoNetClustering((OptionsBuilder<AdoNetClusteringSiloOptions> optionsBuilder) => optionsBuilder.Configure<IServiceProvider>((options, services) =>
         {
             options.Invariant = "Npgsql";
-            
+
             var serviceKey = configurationSection["ServiceKey"];
             if (!string.IsNullOrWhiteSpace(serviceKey))
             {
