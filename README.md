@@ -16,6 +16,7 @@ If there is a sample you wish to see, please sound off in the Discussions sectio
 - [Azure Tables](https://github.com/jsedlak/orleans-samples/tree/main/clustering/azure-tables)
 - [Redis](https://github.com/jsedlak/orleans-samples/tree/main/clustering/redis)
 - [MongoDB](https://github.com/jsedlak/orleans-samples/tree/main/clustering/mongodb) - This is a WIP implementation that uses a custom Provider Builder and service registration. See Issue #4
+- [ADO.NET - PostgreSQL](https://github.com/jsedlak/orleans-samples/tree/main/clustering/ado-postgres) - This is a WIP implementation that uses a custom docker container prebuilt with the necessary tables. See issue #5. Docker container courtesy of [dddanielreis](https://github.com/dddanielreis/playground/tree/main/orleans-postgres-docker)
 
 # Storage
 
