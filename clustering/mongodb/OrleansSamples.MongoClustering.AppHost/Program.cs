@@ -8,7 +8,7 @@ var orleans = builder.AddOrleans("orleans")
     .WithMemoryGrainStorage("Default");
 
 builder.AddProject<Projects.OrleansSamples_MongoClustering_Silo>("silo")
-    .WithReplicas(3)
+    .WithReplicas(1)
     .WithReference(orleans)
     .WithReference(mongo)
     .WaitFor(mongo);
