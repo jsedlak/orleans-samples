@@ -23,6 +23,10 @@ If there is a sample you wish to see, please sound off in the Discussions sectio
 - [Azure Storage (Blobs)](https://github.com/jsedlak/orleans-samples/tree/main/grain-storage/blobs)
 - [Redis](https://github.com/jsedlak/orleans-samples/tree/main/grain-storage/redis)
 
+# Reminders
+
+- [In Memory](https://github.com/jsedlak/orleans-samples/tree/main/reminders/in-memory)
+
 # Patterns
 
 - [Satellite Pattern](https://github.com/jsedlak/orleans-samples/tree/main/patterns/patterns-satellite)
