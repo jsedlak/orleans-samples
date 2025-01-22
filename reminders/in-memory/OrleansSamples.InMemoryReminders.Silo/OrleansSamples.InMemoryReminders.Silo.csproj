@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Orleans.Reminders" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Server" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\common\OrleansSamples.Common.Reminders\OrleansSamples.Common.Reminders.csproj" />
+    <ProjectReference Include="..\..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>
