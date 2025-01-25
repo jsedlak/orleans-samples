@@ -2,29 +2,36 @@ using OrleansSamples.Common.Model;
 
 namespace OrleansSamples.Common.Grains;
 
-public sealed class BasicAccountGrain : Grain<AccountBalance>, IAccountGrain 
+public sealed class BasicAccountGrain : Grain, IAccountGrain 
 {
+    private readonly IPersistentState<AccountBalance> _accountBalance;
+
+    public BasicAccountGrain([PersistentState("accountBalance")] IPersistentState<AccountBalance> state)
+    {
+        _accountBalance = state;
+    }
+
     public async ValueTask<double> Deposit(double amount)
     {
-        State.Amount += amount;
+        _accountBalance.State.Amount += amount;
         
-        await WriteStateAsync();
+        await _accountBalance.WriteStateAsync();
 
-        return State.Amount;
+        return _accountBalance.State.Amount;
     }
 
     public async ValueTask<double> Withdraw(double amount)
     {
-        amount = Math.Min(amount, State.Amount);
-        State.Amount -= amount;
+        amount = Math.Min(amount, _accountBalance.State.Amount);
+        _accountBalance.State.Amount -= amount;
 
-        await WriteStateAsync();
+        await _accountBalance.WriteStateAsync();
 
         return amount;
     }
 
     public Task<AccountBalance> GetBalance()
     {
-        return Task.FromResult(State);
+        return Task.FromResult(_accountBalance.State);
     }
 }

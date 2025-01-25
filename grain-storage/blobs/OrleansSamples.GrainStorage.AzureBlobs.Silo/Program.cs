@@ -41,6 +41,14 @@ app.MapPost("/account/{accountId}/withdraw",
     })
 .WithName("WithdrawFromAccount");
 
+// Add count endpoints
+app.MapGet("/count/{counterId}", async ([FromServices] IClusterClient cluster, [FromRoute] int counterId) =>
+{
+    var counter = cluster.GetGrain<ICountGrain>(counterId);
+    var amount = await counter.Increment();
+    return new { amount };
+}).WithName("IncrementCounter");
+
 app.Run();
 
 record AmountRequest(double amount);
