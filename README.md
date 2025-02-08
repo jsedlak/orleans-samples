@@ -31,3 +31,7 @@ If there is a sample you wish to see, please sound off in the Discussions sectio
 # Patterns
 
 - [Satellite Pattern](https://github.com/jsedlak/orleans-samples/tree/main/patterns/patterns-satellite)
+
+# Streaming
+
+- [Implicit Streams](https://github.com/jsedlak/orleans-samples/tree/main/streaming/streaming-implicit)
