@@ -29,20 +29,20 @@ public sealed class ImplicitStreamConsumerGrain :
 
     public Task OnNextAsync(int item, StreamSequenceToken? token = null)
     {
-        _logger.LogInformation($"[{nameof(ImplicitStreamConsumerGrain)}] OnNextAsync: item: {item}, token = {token}");
+        _logger.LogInformation($"[{this.GetGrainId().ToString()}] OnNextAsync: item: {item}, token = {token}");
         _readCount = item;
         return Task.CompletedTask;
     }
 
     public Task OnCompletedAsync()
     {
-        _logger.LogInformation($"[{nameof(ImplicitStreamConsumerGrain)}] OnCompletedAsync");
+        _logger.LogInformation($"[{this.GetGrainId().ToString()}] OnCompletedAsync");
         return Task.CompletedTask;
     }
 
     public Task OnErrorAsync(Exception ex)
     {
-        _logger.LogInformation($"[{nameof(ImplicitStreamConsumerGrain)}] OnErrorAsync: {{Exception}}", ex);
+        _logger.LogInformation($"[{this.GetGrainId().ToString()}] OnErrorAsync: {{Exception}}", ex);
         return Task.CompletedTask;
     }
 

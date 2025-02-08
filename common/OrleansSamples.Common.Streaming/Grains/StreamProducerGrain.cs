@@ -1,7 +1,5 @@
 using Microsoft.Extensions.Logging;
-using Orleans.Runtime;
 using Orleans.Streams;
-using OrleansSamples.Common;
 
 namespace OrleansSamples.Common.Grains;
 
@@ -23,7 +21,7 @@ public sealed class StreamProducerGrain : Grain, IStreamProducerGrain
     {
         var streamId = StreamId.Create(
             StreamingConstants.StreamNamespace,
-            this.GetGrainId().GetGuidKey()
+            this.GetPrimaryKeyString()
         );
 
         _stream = this
@@ -35,7 +33,7 @@ public sealed class StreamProducerGrain : Grain, IStreamProducerGrain
 
         _logger.LogInformation(
             "Stream Producer [{GrainId}] will now produce a count event every {Period}",
-            this.GetGrainId().GetGuidKey(),
+            this.GetGrainId().ToString(),
             period
         );
 
@@ -57,23 +55,21 @@ public sealed class StreamProducerGrain : Grain, IStreamProducerGrain
         
         return base.OnDeactivateAsync(reason, cancellationToken);
     }
-    
-<<<<<<< HEAD:common/OrleansSamples.Common.Streaming/Grains/StreamProducerGrain.cs
-    private async Task TimerTick(object? _)
-=======
+
     private async Task TimerTick(object? state, CancellationToken token)
->>>>>>> origin/main:Streaming/ImplicitStreams/ImplicitStreams.Shared/ProducerGrain.cs
     {
         // is silo shutting down
-        if (!token.IsCancellationRequested)
+        if (token.IsCancellationRequested)
         {
-            var value = _counter++;
+            return;
+        }
 
-            if (_stream is not null)
-            {
-                _logger.LogInformation("Sending event {EventNumber}", value);
-                await _stream.OnNextAsync(value);
-            }
+        var value = _counter++;
+
+        if (_stream is not null)
+        {
+            _logger.LogInformation("[{GrainId}] Sending event {Count}", this.GetGrainId(), value);
+            await _stream.OnNextAsync(value);
         }
     }
 }
