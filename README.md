@@ -26,6 +26,7 @@ If there is a sample you wish to see, please sound off in the Discussions sectio
 # Reminders
 
 - [In Memory](https://github.com/jsedlak/orleans-samples/tree/main/reminders/in-memory)
+- [Azure Tables](https://github.com/jsedlak/orleans-samples/tree/main/reminders/azure-tables)
 - [Redis](https://github.com/jsedlak/orleans-samples/tree/main/reminders/redis)
 
 # Patterns
