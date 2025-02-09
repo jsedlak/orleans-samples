@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Common", "..\..\common\OrleansSamples.Common\OrleansSamples.Common.csproj", "{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.Common.Reminders", "..\..\common\OrleansSamples.Common.Reminders\OrleansSamples.Common.Reminders.csproj", "{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.ServiceDefaults", "..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj", "{E4DCBB1C-1291-C61C-BD27-97858000B481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.AzureTableReminders.AppHost", "OrleansSamples.AzureTableReminders.AppHost\OrleansSamples.AzureTableReminders.AppHost.csproj", "{10E40717-9555-4E97-813A-A3320768A83B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.AzureTableReminders.Silo", "OrleansSamples.AzureTableReminders.Silo\OrleansSamples.AzureTableReminders.Silo.csproj", "{D35DA202-AB6C-FD40-7631-F4C70407C8E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10E40717-9555-4E97-813A-A3320768A83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E40717-9555-4E97-813A-A3320768A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E40717-9555-4E97-813A-A3320768A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E40717-9555-4E97-813A-A3320768A83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D35DA202-AB6C-FD40-7631-F4C70407C8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D35DA202-AB6C-FD40-7631-F4C70407C8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D35DA202-AB6C-FD40-7631-F4C70407C8E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D35DA202-AB6C-FD40-7631-F4C70407C8E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{72EFDE28-1A00-281F-5A2C-CA5CEE614A5C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9B8B3D82-9D88-3E5F-0570-AF4F2EF12748} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{E4DCBB1C-1291-C61C-BD27-97858000B481} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7ABEE24E-CD6F-468F-882A-3951EE0D4F5E}
+	EndGlobalSection
+EndGlobal
