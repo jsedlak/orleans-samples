@@ -1,0 +1,11 @@
+meta {
+  name: GetAccount
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/accounts/{{accountId}}
+  body: none
+  auth: none
+}

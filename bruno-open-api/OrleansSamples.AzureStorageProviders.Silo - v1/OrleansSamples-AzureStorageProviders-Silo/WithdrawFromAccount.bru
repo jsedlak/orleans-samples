@@ -1,0 +1,11 @@
+meta {
+  name: WithdrawFromAccount
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/accounts/{{accountId}}/withdraw
+  body: json
+  auth: none
+}

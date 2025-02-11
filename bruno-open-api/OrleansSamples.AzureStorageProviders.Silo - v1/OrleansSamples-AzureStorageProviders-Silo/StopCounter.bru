@@ -1,0 +1,11 @@
+meta {
+  name: StopCounter
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/counters/{{counterId}}/stop
+  body: none
+  auth: none
+}

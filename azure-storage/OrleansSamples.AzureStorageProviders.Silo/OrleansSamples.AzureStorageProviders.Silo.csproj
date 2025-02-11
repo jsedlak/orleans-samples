@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Azure.Data.Tables" Version="9.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+		<PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.0.0" />
+		<PackageReference Include="Aspire.Azure.Storage.Queues" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Reminders" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Reminders.AzureStorage" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Server" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Streaming" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Streaming.AzureStorage" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\common\OrleansSamples.Common.Reminders\OrleansSamples.Common.Reminders.csproj" />
+		<ProjectReference Include="..\..\common\OrleansSamples.Common.Streaming\OrleansSamples.Common.Streaming.csproj" />
+		<ProjectReference Include="..\..\common\OrleansSamples.Common\OrleansSamples.Common.csproj" />
+		<ProjectReference Include="..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj" />
+	</ItemGroup>
+
+</Project>

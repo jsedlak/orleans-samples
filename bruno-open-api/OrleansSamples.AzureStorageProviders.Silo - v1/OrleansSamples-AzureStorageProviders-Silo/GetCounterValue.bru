@@ -1,0 +1,11 @@
+meta {
+  name: GetCounterValue
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/counters/{{counterId}}
+  body: none
+  auth: none
+}

@@ -1,0 +1,11 @@
+meta {
+  name: StartProducerCount
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/producers/{{counterId}}/start
+  body: none
+  auth: none
+}
