@@ -1,0 +1,24 @@
+meta {
+  name: Deposit
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{Host}}/api/accounts/{{AccountId}}/deposit
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "amount": {{Amount}}
+  }
+}
+
+script:pre-request {
+  bru.setVar(
+    "Amount", 
+    (Math.random() * 10000).toFixed(2)
+  );
+}

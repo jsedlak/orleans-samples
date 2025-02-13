@@ -1,0 +1,11 @@
+meta {
+  name: Start Counter
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Host}}/api/counters/{{CounterId}}/start
+  body: none
+  auth: none
+}
