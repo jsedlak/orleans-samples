@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-    <PackageReference Include="Microsoft.Orleans.Runtime" Version="9.0.0" />
-    <PackageReference Include="Microsoft.Orleans.Sdk" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Orleans.Runtime" Version="9.1.1" />
+    <PackageReference Include="Microsoft.Orleans.Sdk" Version="9.1.1" />
   </ItemGroup>
 
 </Project>
