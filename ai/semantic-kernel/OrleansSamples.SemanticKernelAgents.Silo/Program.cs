@@ -10,7 +10,7 @@ builder.AddServiceDefaults();
 // change to whatever model you want
 #pragma warning disable SKEXP0070
 builder.Services.AddOllamaChatCompletion(
-    modelId: "smallthinker", 
+    modelId: "smollm:135m", 
     endpoint: new Uri("http://localhost:11434")
 );
 
