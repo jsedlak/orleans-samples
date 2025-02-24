@@ -1,0 +1,17 @@
+meta {
+  name: Ollama Chat
+  type: http
+  seq: 1
+}
+
+post {
+  url: https://localhost:7225/api/agents/testAgent/chat
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "message": "If you had to give yourself a name and a motto, what would it be?"
+  }
+}

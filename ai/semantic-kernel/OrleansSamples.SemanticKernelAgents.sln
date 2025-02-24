@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.ServiceDefaults", "..\..\common\OrleansSamples.ServiceDefaults\OrleansSamples.ServiceDefaults.csproj", "{E4DCBB1C-1291-C61C-BD27-97858000B481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.SemanticKernelAgents.AppHost", "OrleansSamples.SemanticKernelAgents.AppHost\OrleansSamples.SemanticKernelAgents.AppHost.csproj", "{B2D01EEE-22F2-45C2-8705-E683CBB681BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.SemanticKernelAgents.Silo", "OrleansSamples.SemanticKernelAgents.Silo\OrleansSamples.SemanticKernelAgents.Silo.csproj", "{3E5AB48A-43AF-C1E8-811B-6986802CCC2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrleansSamples.SemanticKernelAgents.Core", "OrleansSamples.SemanticKernelAgents.Core\OrleansSamples.SemanticKernelAgents.Core.csproj", "{829884F1-42C4-4487-8B67-74F296FDCBA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4DCBB1C-1291-C61C-BD27-97858000B481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D01EEE-22F2-45C2-8705-E683CBB681BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D01EEE-22F2-45C2-8705-E683CBB681BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D01EEE-22F2-45C2-8705-E683CBB681BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D01EEE-22F2-45C2-8705-E683CBB681BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E5AB48A-43AF-C1E8-811B-6986802CCC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E5AB48A-43AF-C1E8-811B-6986802CCC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E5AB48A-43AF-C1E8-811B-6986802CCC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E5AB48A-43AF-C1E8-811B-6986802CCC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829884F1-42C4-4487-8B67-74F296FDCBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829884F1-42C4-4487-8B67-74F296FDCBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829884F1-42C4-4487-8B67-74F296FDCBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829884F1-42C4-4487-8B67-74F296FDCBA8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E4DCBB1C-1291-C61C-BD27-97858000B481} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6ECE443B-3492-43E1-B64A-EBD9409B47E2}
+	EndGlobalSection
+EndGlobal
