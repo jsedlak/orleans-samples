@@ -1,0 +1,11 @@
+meta {
+  name: Get Balance
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Host}}/api/accounts/{{AccountId}}
+  body: none
+  auth: none
+}

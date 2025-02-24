@@ -1,0 +1,11 @@
+meta {
+  name: Start Producer
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Host}}/api/producers/{{CounterId}}/start
+  body: none
+  auth: none
+}

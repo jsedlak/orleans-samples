@@ -1,0 +1,11 @@
+meta {
+  name: Get Counter
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{Host}}/api/counters/{{CounterId}}
+  body: none
+  auth: none
+}

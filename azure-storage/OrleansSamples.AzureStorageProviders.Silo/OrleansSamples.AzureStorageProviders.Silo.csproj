@@ -11,13 +11,14 @@
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
 		<PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.0.0" />
 		<PackageReference Include="Aspire.Azure.Storage.Queues" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Reminders" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Reminders.AzureStorage" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Server" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Streaming" Version="9.0.0" />
-		<PackageReference Include="Microsoft.Orleans.Streaming.AzureStorage" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Reminders" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Reminders.AzureStorage" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Runtime" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Server" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Streaming" Version="9.1.1" />
+		<PackageReference Include="Microsoft.Orleans.Streaming.AzureStorage" Version="9.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>

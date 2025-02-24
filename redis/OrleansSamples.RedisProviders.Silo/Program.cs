@@ -8,11 +8,7 @@ builder.AddServiceDefaults();
 builder.Services.AddOpenApi();
 
 // Register our aspire services
-builder.AddKeyedAzureTableClient("clustering");
-builder.AddKeyedAzureTableClient("reminders");
-builder.AddKeyedAzureBlobClient("grain-storage");
-builder.AddKeyedAzureBlobClient("pubsub-storage");
-builder.AddKeyedAzureQueueClient("streaming");
+builder.AddKeyedRedisClient("redis");
 
 // Add Orleans
 builder.UseOrleans();

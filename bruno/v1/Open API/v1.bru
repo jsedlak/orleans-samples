@@ -1,11 +1,11 @@
 meta {
-  name: GetAccount
+  name: v1
   type: http
   seq: 1
 }
 
 get {
-  url: {{baseUrl}}/api/accounts/{{accountId}}
+  url: {{Host}}/openapi/v1.json
   body: none
   auth: none
 }
