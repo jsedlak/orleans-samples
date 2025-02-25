@@ -16,6 +16,10 @@ Currently, the agent defaults to OpenAI. To configure the OpenAI chat completion
 }
 ```
 
+Ollama and Azure OpenAI have been added to the Silo's `Program.cs` file, but have not been configured to use environment variables.
+
+> **NOTE:** In order for Function Calling to work, you will need to use an appropriate model. Open AI and Azure Open AI have been tested as configured. Ollama has not been configured, but the llama3.1+ model should support Function Calling.
+
 ## Running
 
 After starting the App Host, you may use the included Bruno files to execute API endpoints to interact with the agent.
