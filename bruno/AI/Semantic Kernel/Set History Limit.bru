@@ -1,0 +1,17 @@
+meta {
+  name: Set History Limit
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://localhost:7225/api/agents/testAgent/history-limit
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "limit": 10
+  }
+}

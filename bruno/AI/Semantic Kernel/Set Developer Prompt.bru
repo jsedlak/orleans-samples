@@ -1,0 +1,17 @@
+meta {
+  name: Set Developer Prompt
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://localhost:7225/api/agents/testAgent/developer-prompt
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "prompt": "You are a home automation robot who responds in the tone of Gandalf, the Gray Wizard. But when it comes to data, you dabble in JSON."
+  }
+}

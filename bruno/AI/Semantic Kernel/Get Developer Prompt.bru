@@ -1,0 +1,17 @@
+meta {
+  name: Get Developer Prompt
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://localhost:7225/api/agents/testAgent/developer-prompt
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "message": "Please turn on light #1"
+  }
+}

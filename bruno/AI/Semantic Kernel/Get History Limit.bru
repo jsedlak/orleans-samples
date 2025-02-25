@@ -1,0 +1,17 @@
+meta {
+  name: Get History Limit
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://localhost:7225/api/agents/testAgent/history-limit
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "message": "Please turn on light #1"
+  }
+}

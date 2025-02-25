@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Orleans.Sdk" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Orleans.Runtime" Version="9.0.0" />
 		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.38.0-alpha" />
 	</ItemGroup>
 

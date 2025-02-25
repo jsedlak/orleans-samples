@@ -3,6 +3,7 @@ using Microsoft.SemanticKernel;
 using OrleansSamples.SemanticKernelAgents.GrainModel;
 using OrleansSamples.SemanticKernelAgents.Model;
 using OrleansSamples.SemanticKernelAgents.Plugins;
+using OrleansSamples.SemanticKernelAgents.Silo;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,16 +67,7 @@ app.MapDefaultEndpoints();
 app.UseHttpsRedirection();
 
 // Provide an API into the chat agent
-app.MapPost("api/agents/{agentId}/chat",
-    async ([FromServices] IClusterClient cluster, [FromRoute] string agentId, [FromBody] UserChatRequest request) =>
-    {
-        var account = cluster.GetGrain<IChatAgentGrain>(agentId);
-        var response = await account.Submit(request.message);
-        return new { message = response };
-    }
-)
-.WithName("Agent_SubmitChat");
+app.MapGrainEndpoints();
 
+// Run the app!
 await app.RunAsync();
-
-public record UserChatRequest(string message);

@@ -1,0 +1,17 @@
+meta {
+  name: Get Chat History
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://localhost:7225/api/agents/testAgent/chat
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "message": "Please turn on light #1"
+  }
+}
