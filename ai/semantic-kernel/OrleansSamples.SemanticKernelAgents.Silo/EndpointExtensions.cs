@@ -51,7 +51,8 @@ public static class EndpointExtensions
             async ([FromServices] IClusterClient cluster, [FromRoute] string agentId) =>
             {
                 var agent = cluster.GetGrain<IChatAgentGrain>(agentId);
-                return await agent.GetDeveloperPrompt();
+                var prompt = await agent.GetDeveloperPrompt();
+                return new { prompt };
             }
         ).WithName("Agent_GetDeveloperPrompt");
 
@@ -70,7 +71,8 @@ public static class EndpointExtensions
             async ([FromServices] IClusterClient cluster, [FromRoute] string agentId) =>
             {
                 var agent = cluster.GetGrain<IChatAgentGrain>(agentId);
-                return await agent.GetHistoryMaxLength();
+                var limit = await agent.GetHistoryMaxLength();
+                return new { limit };
             }
         ).WithName("Agent_GetHistoryLimit");
     }

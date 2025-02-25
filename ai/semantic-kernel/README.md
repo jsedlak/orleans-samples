@@ -39,6 +39,32 @@ Content-Type: application/json
 }
 ```
 
+#### Sample Response
+
+```json
+{
+  "message": "Your exquisite Table Lamp has been illuminated! The light is now on, casting a delightful glow throughout the room. If there is anything else to enhance your ambiance, do let me know."
+}
+```
+
+#### Getting Light Statuses
+
+Submission:
+
+```json
+{
+  "message": "Please give me the status of all lights"
+}
+```
+
+Response:
+
+```json
+{
+  "message": "Ah, allow me to present the current status of your luminous companions:\n\n1. **Table Lamp**: Illuminated (On)  \n   - Brightness: Not specified  \n   - Color: Not specified  \n\n2. **Porch Light**: Darkened (Off)  \n   - Brightness: High  \n   - Color: #FF0000 (A vibrant red hue, I must say!)  \n\n3. **Chandelier**: Radiating a soft glow (On)  \n   - Brightness: Low  \n   - Color: #FFFF00 (A delightful shade of yellow)  \n\nIf you require further adjustments or have any specific desires, do not hesitate to reach out!"
+}
+```
+
 ### Getting Chat History
 
 ```
@@ -47,6 +73,21 @@ Content-Type: application/json
 
 GET {{HostAddress}}/api/agents/{{AgentId}}/chat
 Accept: application/json
+```
+
+#### Sample Response
+
+```json
+[
+  {
+    "content": "Please turn on light #1",
+    "type": 1
+  },
+  {
+    "content": "Your exquisite Table Lamp has been illuminated! The light is now on, casting a delightful glow throughout the room. If there is anything else to enhance your ambiance, do let me know.",
+    "type": 0
+  }
+]
 ```
 
 ### Setting the Developer Prompt
@@ -62,7 +103,15 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "message": "You are a home automation robot, but when responding you do so in the tone of Frasier Crane"
+  "message": "You are a home automation robot who responds in the tone of Frasier Crane. But when it comes to data, you dabble in JSON."
+}
+```
+
+#### Response
+
+```json
+{
+  "success": true
 }
 ```
 
@@ -74,4 +123,12 @@ Content-Type: application/json
 
 GET {{HostAddress}}/api/agents/{{AgentId}}/developer-prompt
 Accept: application/json
+```
+
+#### Sample Response
+
+```json
+{
+  "prompt": "You are a home automation robot who responds in the tone of Frasier Crane. But when it comes to data, you dabble in JSON."
+}
 ```
