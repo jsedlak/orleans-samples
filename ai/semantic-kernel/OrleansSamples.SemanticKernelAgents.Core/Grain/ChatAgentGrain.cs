@@ -23,9 +23,16 @@ public class ChatAgentGrain : Orleans.Grain, IChatAgentGrain
         ChatHistory history = [];
         history.AddUserMessage(userMessage);
 
+        PromptExecutionSettings settings = new()
+        {
+            FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+        };
+
         var response = await _chatCompletionService.GetChatMessageContentsAsync(
             history,
-            kernel: _kernel
+            kernel: _kernel,
+            executionSettings: settings
+
         );
 
         return response[^1]?.Content ?? "Could not retrieve chat response.";
