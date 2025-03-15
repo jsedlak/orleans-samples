@@ -2,7 +2,7 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var openAiApiKey = builder.AddParameter("OpenAiApiKey");
+var openAiApiKey = builder.AddParameter("OpenAiApiKey", true);
 
 var orleans = builder.AddOrleans("orleans")
     .WithDevelopmentClustering()

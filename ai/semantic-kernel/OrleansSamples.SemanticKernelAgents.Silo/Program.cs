@@ -14,12 +14,12 @@ builder.AddServiceDefaults();
 /* ############################################ */
 
 /* 
- * Uncomment to use Ollama. Function calling should work
- * with llama3.1 or later, but this has not been tested.
+ * Uncomment to use Ollama. Function calling has been
+ * tested to work with llama3.2
  */
 //#pragma warning disable SKEXP0070
 //builder.Services.AddOllamaChatCompletion(
-//    modelId: "llama3.1",
+//    modelId: "llama3.2",
 //    endpoint: new Uri("http://localhost:11434")
 //);
 
