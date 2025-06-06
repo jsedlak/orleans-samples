@@ -4,6 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Services.AddFusionCache();
+builder.Services.AddScoped<CachedWeatherService>();
 builder.Services.AddScoped<WeatherService>();
 builder.UseOrleans();
 

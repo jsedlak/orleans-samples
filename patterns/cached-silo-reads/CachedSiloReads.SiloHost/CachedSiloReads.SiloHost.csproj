@@ -11,6 +11,7 @@
 	  <PackageReference Include="Microsoft.Orleans.Reminders" Version="9.1.2" />
 	  <PackageReference Include="Microsoft.Orleans.Server" Version="9.1.2" />
 	  <PackageReference Include="Microsoft.Orleans.Streaming" Version="9.1.2" />
+	  <PackageReference Include="ZiggyCreatures.FusionCache" Version="2.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
