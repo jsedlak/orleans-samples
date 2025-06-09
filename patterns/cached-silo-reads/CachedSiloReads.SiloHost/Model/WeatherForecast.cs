@@ -1,7 +1,7 @@
 namespace CachedSiloReads.SiloHost.Model;
 
 [GenerateSerializer]
-public class WeatherForecast
+public record WeatherForecast
 {
     [Id(0)]
     public DateOnly Date { get; set; }
