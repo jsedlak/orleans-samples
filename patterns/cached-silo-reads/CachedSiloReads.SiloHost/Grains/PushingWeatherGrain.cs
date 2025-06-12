@@ -20,18 +20,23 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
         _state = state;
     }
 
-    public override Task OnActivateAsync(CancellationToken cancellationToken)
+    public override async Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        this.RegisterGrainTimer(
-            this.UpdateWeather,
-            (object?)null,
+        await UpdateWeather();
+
+        this.RegisterGrainTimer(async state => 
+            { 
+                await UpdateWeather();
+                await PushUpdateToSubscribers();
+            },
+            (object?) null,
             new GrainTimerCreationOptions(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1))
             {
+                // Disallow concurrent access to the subscribers from graintimer and incoming subscriptions.
                 Interleave = false
-            }
-        );
+            });
 
-        return base.OnActivateAsync(cancellationToken);
+        await base.OnActivateAsync(cancellationToken);
     }
 
     public override Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)
@@ -45,7 +50,7 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
     }
 
 
-    private async Task UpdateWeather(object? state)
+    private async Task UpdateWeather()
     {
         _state.State = _weatherService.Get().FirstOrDefault() ?? new WeatherForecast
         {
@@ -55,8 +60,13 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
         };
 
         await _state.WriteStateAsync();
+    }
 
-        // Push the update to all subscribers via their channels.
+    /// <summary>
+    /// Push the update to all subscribers via their channels.
+    /// </summary>
+    private async Task PushUpdateToSubscribers()
+    {
         await Task.WhenAll(
             _subscribers.Select(
                 channel => channel.Writer.WriteAsync(_state.State).AsTask()));

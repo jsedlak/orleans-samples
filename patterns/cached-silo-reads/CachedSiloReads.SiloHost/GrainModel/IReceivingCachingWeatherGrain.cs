@@ -6,7 +6,7 @@ namespace CachedSiloReads.SiloHost.GrainModel;
 public interface IReceivingCachingWeatherGrain : IGrainWithStringKey
 {
     [ReadOnly]
-    Task<WeatherForecast?> GetForecast();
+    Task<WeatherForecast> GetForecast();
 
     Task Deactivate();
 }
