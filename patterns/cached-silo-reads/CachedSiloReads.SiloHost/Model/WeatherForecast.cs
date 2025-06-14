@@ -13,4 +13,7 @@ public record WeatherForecast
 
     [Id(2)]
     public string? Summary { get; set; }
+
+    [Id(3)]
+    public required int Sequence { get; set; }
 }

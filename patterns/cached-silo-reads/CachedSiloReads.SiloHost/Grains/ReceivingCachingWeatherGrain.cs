@@ -1,43 +1,52 @@
 using CachedSiloReads.SiloHost.GrainModel;
 using CachedSiloReads.SiloHost.Model;
 using Orleans.Concurrency;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace CachedSiloReads.SiloHost.Grains;
 
 [StatelessWorker(1)]
-public class ReceivingCachingWeatherGrain : Grain, IReceivingCachingWeatherGrain
+public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) : Grain, IReceivingCachingWeatherGrain
 {
-    private readonly ILogger<ICachingWeatherGrain> _logger;
+    private WeatherCacheItem _theCacheItem = null!;
 
-    /// <summary>
-    /// Value guaranteed in OnActivateAsync.
-    /// </summary>
-    [NotNull]
-    private WeatherCacheItem _theCacheItem;
+    ConfiguredCancelableAsyncEnumerable<WeatherForecast> _enumeratorProxy;
 
-    private Task _monitorTask;
+    private Task _monitorTask = null!;
     private readonly CancellationTokenSource _stopMonitoringToken = new();
-
-    public ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger)
-    {
-        _logger = logger;
-    }
 
     public override async Task OnActivateAsync(CancellationToken cancellationToken)
     {
-        // Ensure cache item received before grain activating completes.
-        await foreach (var cacheItem in GetUpdates(cancellationToken))
+        using var registration = cancellationToken.Register(_stopMonitoringToken.Cancel);
+
+        _enumeratorProxy = GrainFactory
+            .GetGrain<IPushingWeatherGrain>("the-weather-grain")
+            .GetForecastUpdates()
+            .WithCancellation(_stopMonitoringToken.Token);
+
+        var enumerator = _enumeratorProxy.GetAsyncEnumerator();
+
+        // Ensure the cache can always provide by initializing in OnActivate.
+        try
         {
-            _theCacheItem = cacheItem;
-            _logger.LogInformation("Cache '{GrainKey}' received initial forecast: {Forecast}", this.GetPrimaryKeyString(), cacheItem.Forecast);
-            break;
+            if (await enumerator.MoveNextAsync())
+            {
+                logger.LogInformation("Cache '{GrainKey}' received initial forecast: {Forecast}", this.GetPrimaryKeyString(), enumerator.Current);
+                _theCacheItem = CreateCacheItem(enumerator.Current);
+            }
+        }
+        catch (Exception)
+        {
+            await enumerator.DisposeAsync();
+            throw;
         }
 
+        // Keep the enumerator intact and pass it on to the monitoring task to 
+        // receive more forecasts on the same enumeration. This ensures no forecasts 
+        // are missed or received multiple times between init and monitoring.
         _monitorTask = Task.Factory
             .StartNew(
-                () => MonitorUpdates(_stopMonitoringToken.Token),
+                () => MonitorUpdates(enumerator),
                 cancellationToken,
                 TaskCreationOptions.None,
                 TaskScheduler.Current)
@@ -48,65 +57,51 @@ public class ReceivingCachingWeatherGrain : Grain, IReceivingCachingWeatherGrain
 
     public override async Task OnDeactivateAsync(DeactivationReason reason, CancellationToken cancellationToken)
     {
-        _stopMonitoringToken.Cancel();
-
-        await _monitorTask;
+        try
+        {
+            _stopMonitoringToken.Cancel();
+            await _monitorTask;
+        }
+        finally
+        {
+            _stopMonitoringToken.Dispose();
+        }
 
         await base.OnDeactivateAsync(reason, cancellationToken);
     }
 
-    private async Task MonitorUpdates(CancellationToken cancellationToken)
+    private async Task MonitorUpdates(ConfiguredCancelableAsyncEnumerable<WeatherForecast>.Enumerator enumerator)
     {
-        if (cancellationToken.IsCancellationRequested)
-        {
-            return;
-        }
+        // Demo: wait a while to show no forecasts will be missed. They are stored
+        // per subscriber on the pushing grain, waiting to be picked up by the async iterator.
+        await Task.Delay(TimeSpan.FromSeconds(5));
 
         try
         {
-            await foreach (var cacheItem in GetUpdates(cancellationToken))
+            while (await enumerator.MoveNextAsync())
             {
-                _theCacheItem = cacheItem;
-
-                if (cancellationToken.IsCancellationRequested)
-                {
-                    break;
-                }
+                logger.LogInformation("Cache '{GrainKey}' received updated forecast: {Forecast}", this.GetPrimaryKeyString(), enumerator.Current);
+                _theCacheItem = CreateCacheItem(enumerator.Current);
             }
         }
-        catch (Exception ex) when (ex is not OperationCanceledException)
+        catch (Exception ex) when (ex is not OperationCanceledException && ex is not TaskCanceledException)
         {
-            _logger.LogError(ex, "Error receiving weather updates");
+            logger.LogError(ex, "Error receiving weather updates");
             DeactivateOnIdle();
         }
-    }
-
-    private async IAsyncEnumerable<WeatherCacheItem> GetUpdates([EnumeratorCancellation] CancellationToken cancellationToken)
-    {
-        var weatherGrain = GrainFactory.GetGrain<IPushingWeatherGrain>("just-one");
-
-        // TODO: add cancellation. Actually this should be solvable soon when https://github.com/dotnet/orleans/issues/8958 is released.
-        await foreach (var forecast in weatherGrain.GetForecastUpdates())
+        finally
         {
-            _logger.LogInformation("Cache '{GrainKey}' received updated forecast: {Forecast}", this.GetPrimaryKeyString(), forecast);
-
-            yield return new WeatherCacheItem
-            {
-                Forecast = forecast,
-                LastUpdated = DateTime.UtcNow
-            };
-
-            if (cancellationToken.IsCancellationRequested)
-            {
-                break;
-            }
+            await enumerator.DisposeAsync();
         }
     }
 
-    public Task<WeatherForecast> GetForecast()
+    private static WeatherCacheItem CreateCacheItem(WeatherForecast forecast) => new()
     {
-        return Task.FromResult(_theCacheItem.Forecast);
-    }
+        Forecast = forecast,
+        LastUpdated = DateTime.UtcNow
+    };
+
+    public ValueTask<WeatherForecast> GetForecast() => ValueTask.FromResult(_theCacheItem.Forecast);
 
     public Task Deactivate()
     {

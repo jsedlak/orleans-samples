@@ -1,4 +1,4 @@
-﻿using CachedSiloReads.SiloHost.GrainModel;
+using CachedSiloReads.SiloHost.GrainModel;
 using CachedSiloReads.SiloHost.Model;
 using CachedSiloReads.SiloHost.Services;
 
@@ -40,7 +40,8 @@ public class WeatherGrain : Grain, IWeatherGrain
         {
             Date = DateOnly.FromDateTime(DateTime.Now),
             TemperatureC = 0,
-            Summary = "No data available"
+            Summary = "No data available",
+            Sequence = 0
         };
 
         await _state.WriteStateAsync();

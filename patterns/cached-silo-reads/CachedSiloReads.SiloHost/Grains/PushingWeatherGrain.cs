@@ -9,7 +9,6 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
 {
     private readonly WeatherService _weatherService;
     private readonly IPersistentState<WeatherForecast> _state;
-
     private readonly HashSet<Channel<WeatherForecast>> _subscribers = [];
 
     public PushingWeatherGrain(
@@ -56,7 +55,8 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
         {
             Date = DateOnly.FromDateTime(DateTime.Now),
             TemperatureC = 0,
-            Summary = "No data available"
+            Summary = "No data available",
+            Sequence = 0
         };
 
         await _state.WriteStateAsync();
@@ -74,9 +74,9 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
 
     public async IAsyncEnumerable<WeatherForecast> GetForecastUpdates()
     {
-        // Add caller as a new subscriber.
+        // Add caller as a new subscriber
         var channel = Channel.CreateBounded<WeatherForecast>(
-            new BoundedChannelOptions(capacity: 1)
+            new BoundedChannelOptions(capacity: 10)
             {
                 FullMode = BoundedChannelFullMode.DropOldest,
                 SingleReader = true,
@@ -87,7 +87,7 @@ public class PushingWeatherGrain : Grain, IPushingWeatherGrain
 
         try
         {
-            // provide the latest forecast as an initial update to the new subscriber.
+            // provide the latest forecast as an initial update to the new subscriber
             await channel.Writer.WriteAsync(_state.State);
 
             await foreach (var forecast in channel.Reader.ReadAllAsync())
