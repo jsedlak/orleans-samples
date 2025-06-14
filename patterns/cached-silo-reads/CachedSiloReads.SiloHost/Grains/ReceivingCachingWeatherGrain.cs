@@ -116,3 +116,4 @@ public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) 
         public required DateTime LastUpdated { get; init; }
     }
 }
+
