@@ -13,10 +13,11 @@ public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) 
     ConfiguredCancelableAsyncEnumerable<WeatherForecast> _enumeratorProxy;
 
     private Task _monitorTask = null!;
-    private readonly CancellationTokenSource _stopMonitoringToken = new();
+    private CancellationTokenSource _stopMonitoringToken = null!;
 
     public override async Task OnActivateAsync(CancellationToken cancellationToken)
     {
+        _stopMonitoringToken = new();
         using var registration = cancellationToken.Register(_stopMonitoringToken.Cancel);
 
         _enumeratorProxy = GrainFactory
@@ -38,6 +39,7 @@ public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) 
         catch (Exception)
         {
             await enumerator.DisposeAsync();
+            _stopMonitoringToken.Dispose();
             throw;
         }
 
