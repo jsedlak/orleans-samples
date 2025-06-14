@@ -27,7 +27,7 @@ public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) 
 
         var enumerator = _enumeratorProxy.GetAsyncEnumerator();
 
-        // Ensure the cache can always provide by initializing in OnActivate.
+        // Wait in OnActivate for the first forecast to ensure the cache can provide on the first incoming call.
         try
         {
             if (await enumerator.MoveNextAsync())
@@ -43,9 +43,9 @@ public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) 
             throw;
         }
 
-        // Keep the enumerator intact and pass it on to the monitoring task to 
-        // receive more forecasts on the same enumeration. This ensures no forecasts 
-        // are missed or received multiple times between init and monitoring.
+        // Pass the same enumerator on to the monitoring task to have an uninterrupted feed of
+        // forecasts using the same enumerating grain call. This should ensure no forecasts are 
+        // missed and/or received multiple times between init and monitoring.
         _monitorTask = Task.Factory
             .StartNew(
                 () => MonitorUpdates(enumerator),
