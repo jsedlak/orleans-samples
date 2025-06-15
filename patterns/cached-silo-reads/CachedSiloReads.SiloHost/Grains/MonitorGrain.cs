@@ -74,16 +74,38 @@ public abstract class MonitorGrain<T>(ILogger logger) : Grain, IMonitorGrain<T> 
 
         try
         {
-            while (await enumerator.MoveNextAsync())
+            while (true)
             {
-                logger.LogInformation("{GrainId} received update: {Value}", this.GetGrainId(), enumerator.Current);
-                _current = CreateCacheItem(enumerator.Current);
+                try
+                {
+                    while (await enumerator.MoveNextAsync())
+                    {
+                        logger.LogInformation("{GrainId} received update: {Value}", this.GetGrainId(), enumerator.Current);
+                        _current = CreateCacheItem(enumerator.Current);
+                    }
+
+                    // No need to keep this grain alive when the monitored grain signals the enumeration
+                    // is complete, indicating it will never provide any updates again.
+                    DeactivateOnIdle();
+                    break;
+                }
+                catch (SiloUnavailableException)
+                {
+                    await enumerator.DisposeAsync();
+
+                    // Most likely the silo of the monitored grain is in shutdown. This should be a 
+                    // transient exception and resolvable by reactivating the grain by resubscribing.
+                    logger.LogInformation("The monitored grain became unavailable due to an unavailable silo. Resubscribing.");
+                    _enumeratorProxy = GetUpdates().WithCancellation(_stopMonitoringToken.Token);
+                    enumerator = _enumeratorProxy.GetAsyncEnumerator();
+                }
             }
         }
         catch (Exception ex) when (ex is not OperationCanceledException && ex is not TaskCanceledException)
         {
             logger.LogError(ex, "Error receiving updates.");
             DeactivateOnIdle();
+            throw;
         }
         finally
         {
