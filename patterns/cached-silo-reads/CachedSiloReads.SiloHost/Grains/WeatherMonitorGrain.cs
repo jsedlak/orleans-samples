@@ -1,10 +1,9 @@
+namespace CachedSiloReads.SiloHost.Grains;
+
 using CachedSiloReads.SiloHost.GrainModel;
 using CachedSiloReads.SiloHost.Model;
 
-namespace CachedSiloReads.SiloHost.Grains;
-
-public class ReceivingCachingWeatherGrain(ILogger<ICachingWeatherGrain> logger) : 
-    ReceivingCachingGrain<WeatherForecast>(logger)
+public class WeatherMonitorGrain(ILogger<WeatherMonitorGrain> logger) : MonitorGrain<WeatherForecast>(logger)
 {
     protected override IAsyncEnumerable<WeatherForecast> GetUpdates()
     {

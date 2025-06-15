@@ -43,7 +43,7 @@ public class WeatherForecastController : ControllerBase
     public async Task<WeatherForecast?> GetWithPushCaching([FromQuery]string cache)
     {
         return await _clusterClient
-            .GetGrain<IReceivingCachingGrain<WeatherForecast>>(cache)
+            .GetGrain<IMonitorGrain<WeatherForecast>>(cache)
             .GetCurrentValue();
     }
 
@@ -51,7 +51,7 @@ public class WeatherForecastController : ControllerBase
     public async Task StopPushCaching([FromQuery]string cache)
     {
         await _clusterClient
-            .GetGrain<IReceivingCachingGrain<WeatherForecast>>(cache)
+            .GetGrain<IMonitorGrain<WeatherForecast>>(cache)
             .Abort();
     }
 }

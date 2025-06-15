@@ -5,12 +5,10 @@ using Orleans.Concurrency;
 using System.Runtime.CompilerServices;
 
 [StatelessWorker(1, removeIdleWorkers: false)]
-public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) : 
-    Grain, IReceivingCachingGrain<TCacheItem> 
-    where TCacheItem : notnull
+public abstract class MonitorGrain<T>(ILogger logger) : Grain, IMonitorGrain<T> where T : notnull
 {
-    private CacheItem _theCacheItem = null!;
-    ConfiguredCancelableAsyncEnumerable<TCacheItem> _enumeratorProxy;
+    private CacheItem _current = null!;
+    ConfiguredCancelableAsyncEnumerable<T> _enumeratorProxy;
 
     private Task _monitorTask = null!;
     private CancellationTokenSource _stopMonitoringToken = null!;
@@ -28,8 +26,8 @@ public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) :
         {
             if (await enumerator.MoveNextAsync())
             {
-                logger.LogInformation("Cache '{GrainKey}' received initial value: {Update}", this.GetPrimaryKeyString(), enumerator.Current);
-                _theCacheItem = CreateCacheItem(enumerator.Current);
+                logger.LogInformation("{GrainId} received initial value: {Value}", this.GetGrainId(), enumerator.Current);
+                _current = CreateCacheItem(enumerator.Current);
             }
         }
         catch (Exception)
@@ -40,9 +38,9 @@ public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) :
             throw;
         }
 
-        // Pass the same enumerator on to the monitoring task to have an uninterrupted feed of
-        // updates using the same enumerating grain call. This should ensure no updates are 
-        // missed and/or received multiple times between init and monitoring.
+        // Pass the enumerator instance on to the monitoring task to have an uninterrupted feed 
+        // of updates using the same enumerating grain call. This ensures no updates are 
+        // missed and/or received multiple times between init and subsequent monitoring.
         _monitorTask = Task.Factory
             .StartNew(
                 () => MonitorUpdates(enumerator),
@@ -68,18 +66,18 @@ public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) :
         }
     }
 
-    private async Task MonitorUpdates(ConfiguredCancelableAsyncEnumerable<TCacheItem>.Enumerator enumerator)
+    private async Task MonitorUpdates(ConfiguredCancelableAsyncEnumerable<T>.Enumerator enumerator)
     {
         // Demo: wait a while to show that no updates will be missed. They are stored
         // per subscriber on the pushing grain, waiting to be picked up by the async iterator.
-        await Task.Delay(TimeSpan.FromSeconds(5));
+        await Task.Delay(TimeSpan.FromSeconds(3));
 
         try
         {
             while (await enumerator.MoveNextAsync())
             {
-                logger.LogInformation("Cache '{GrainKey}' received update: {Update}", this.GetPrimaryKeyString(), enumerator.Current);
-                _theCacheItem = CreateCacheItem(enumerator.Current);
+                logger.LogInformation("{GrainId} received update: {Value}", this.GetGrainId(), enumerator.Current);
+                _current = CreateCacheItem(enumerator.Current);
             }
         }
         catch (Exception ex) when (ex is not OperationCanceledException && ex is not TaskCanceledException)
@@ -93,7 +91,7 @@ public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) :
         }
     }
 
-    public ValueTask<TCacheItem> GetCurrentValue() => ValueTask.FromResult(_theCacheItem.Value);
+    public ValueTask<T> GetCurrentValue() => ValueTask.FromResult(_current.Value);
 
     public ValueTask Abort()
     {
@@ -101,9 +99,9 @@ public abstract class ReceivingCachingGrain<TCacheItem>(ILogger logger) :
         return ValueTask.CompletedTask;
     }
 
-    protected abstract IAsyncEnumerable<TCacheItem> GetUpdates();
+    protected abstract IAsyncEnumerable<T> GetUpdates();
 
-    private static CacheItem CreateCacheItem(TCacheItem value) => new(value, DateTime.UtcNow);
+    private static CacheItem CreateCacheItem(T value) => new(value, DateTime.UtcNow);
 
-    private record CacheItem(TCacheItem Value, DateTime LastUpdated);
+    private record CacheItem(T Value, DateTime LastUpdated);
 }
