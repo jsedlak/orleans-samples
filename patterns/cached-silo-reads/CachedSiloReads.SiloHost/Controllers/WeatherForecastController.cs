@@ -42,14 +42,16 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("pushcaching")]
     public async Task<WeatherForecast?> GetWithPushCaching([FromQuery]string cache)
     {
-        var grain = _clusterClient.GetGrain<IReceivingCachingWeatherGrain>(cache);
-        return await grain.GetForecast();
+        return await _clusterClient
+            .GetGrain<IReceivingCachingGrain<WeatherForecast>>(cache)
+            .GetCurrentValue();
     }
 
     [HttpGet("stoppushcaching")]
     public async Task StopPushCaching([FromQuery]string cache)
     {
-        var grain = _clusterClient.GetGrain<IReceivingCachingWeatherGrain>(cache);
-        await grain.Deactivate();
+        await _clusterClient
+            .GetGrain<IReceivingCachingGrain<WeatherForecast>>(cache)
+            .Abort();
     }
 }
