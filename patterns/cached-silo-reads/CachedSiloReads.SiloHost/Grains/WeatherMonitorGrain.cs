@@ -7,8 +7,9 @@ public class WeatherMonitorGrain(ILogger<WeatherMonitorGrain> logger) : MonitorG
 {
     protected override IAsyncEnumerable<WeatherForecast> GetUpdates()
     {
-        return GrainFactory
-            .GetGrain<IPushingWeatherGrain>("the-weather-grain")
-            .GetForecastUpdates();
+        var weatherGrain = GrainFactory.GetGrain<IPushingWeatherGrain>("the-one-and-only");
+        logger.LogInformation("{MonitorGrainId} is monitoring {WeatherGrainId}.", this.GetGrainId(), weatherGrain.GetGrainId());
+
+        return weatherGrain.GetForecastUpdates();
     }
 }
