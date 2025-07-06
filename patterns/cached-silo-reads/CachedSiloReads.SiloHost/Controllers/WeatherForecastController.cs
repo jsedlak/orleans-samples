@@ -2,8 +2,6 @@ using CachedSiloReads.SiloHost.GrainModel;
 using CachedSiloReads.SiloHost.Model;
 using CachedSiloReads.SiloHost.Services;
 using Microsoft.AspNetCore.Mvc;
-using Orleans;
-using System.Threading.Tasks;
 
 namespace CachedSiloReads.SiloHost.Controllers;
 
@@ -39,5 +37,21 @@ public class WeatherForecastController : ControllerBase
             .GetForecastForRegion(region);
 
         return [result];
+    }
+
+    [HttpGet("pushcaching")]
+    public async Task<WeatherForecast?> GetWithPushCaching([FromQuery]string cache)
+    {
+        return await _clusterClient
+            .GetGrain<IMonitorGrain<WeatherForecast>>(cache)
+            .GetCurrentValue();
+    }
+
+    [HttpGet("stoppushcaching")]
+    public async Task StopPushCaching([FromQuery]string cache)
+    {
+        await _clusterClient
+            .GetGrain<IMonitorGrain<WeatherForecast>>(cache)
+            .Abort();
     }
 }
